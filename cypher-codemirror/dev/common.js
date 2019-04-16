@@ -81,6 +81,7 @@ export const neo4jSchema = {
     { name: ':queries' },
   ],
   labels: [
+    ':Spacey mc spaceface',
     ':Legislator',
     ':State',
     ':Party',

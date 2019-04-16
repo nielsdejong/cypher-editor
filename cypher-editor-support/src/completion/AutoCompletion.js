@@ -57,6 +57,18 @@ class AbstractCachingCompletion {
   }
 }
 
+const ecsapeCypherMetaItem = (str) => {
+  const prefix = str.startsWith(":") ? ":" : "";
+  let content = str;
+  if (prefix.length > 0) {
+    content = str.substring(1);
+  }
+  return /^[A-Za-z][A-Za-z0-9_]*$/.test(content)
+  ? prefix + content
+  : prefix + '`' + content.replace(/`/g, '``') + '`';
+}
+  
+
 class SchemaBasedCompletion extends AbstractCachingCompletion {
   schema = {};
 
@@ -111,7 +123,7 @@ class SchemaBasedCompletion extends AbstractCachingCompletion {
         .map(relType => ({
           type: CompletionTypes.RELATIONSHIP_TYPE,
           view: relType,
-          content: relType,
+          content: ecsapeCypherMetaItem(relType),
           postfix: null,
         })),
       [CompletionTypes.PROPERTY_KEY]: (schema.propertyKeys || [])
