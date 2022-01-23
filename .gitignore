@@ -1,7 +1,1 @@
-node_modules
-*/dist
-.idea
-*.iml
-npm-debug.log
-.babel-cache/
-*.iml
+/demo
